@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SEGPRIV BRASIL | Portal de Capacitação na Legislação da Segurança Privada</title>
+  <style>
+    :root {
+      --navy-950: #070d19;
+      --navy-900: #0f172a;
+      --navy-800: #1e293b;
+      --navy-700: #334155;
+      --gold-500: #d4af37;
+      --gold-400: #eab308;
+      --gold-100: #fef9c3;
+      --blue-600: #2563eb;
+      --blue-50: #eff6ff;
+      --green-600: #16a34a;
+      --green-50: #f0fdf4;
+      --red-600: #dc2626;
+      --red-50: #fef2f2;
+      --bg-page: #f1f5f9;
+      --surface: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --border: #e2e8f0;
+      --radius: 12px;
+      --shadow: 0 4px 20px rgba(15, 23, 42, 0.07);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg-page);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    /* HEADER & HERO */
+    header {
+      background: linear-gradient(135deg, var(--navy-950) 0%, var(--navy-900) 60%, #172554 100%);
+      color: #fff;
+      border-bottom: 3px solid var(--gold-500);
+      padding: 2rem 1.25rem 1.5rem;
+    }
+    .container { max-width: 1120px; margin: 0 auto; }
+    .top-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .shield-icon {
+      width: 44px;
+      height: 44px;
+      background: rgba(212, 175, 55, 0.15);
+      border: 1.5px solid var(--gold-500);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold-500);
+      font-weight: 800;
+      font-size: 1.2rem;
+    }
+    .brand h1 { font-size: 1.35rem; letter-spacing: 0.5px; font-weight: 800; }
+    .brand span { display: block; font-size: 0.8rem; color: #cbd5e1; font-weight: 400; }
+    .author-pill {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(212, 175, 55, 0.45);
+      padding: 0.45rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      color: #f8fafc;
+    }
+    .author-pill strong { color: var(--gold-400); }
+
+    .hero-content { max-width: 780px; margin-bottom: 1.5rem; }
+    .hero-badge {
+      display: inline-block;
+      background: var(--gold-500);
+      color: var(--navy-950);
+      font-weight: 700;
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 0.25rem 0.7rem;
+      border-radius: 6px;
+      margin-bottom: 0.75rem;
+    }
+    .hero-content h2 { font-size: 1.85rem; line-height: 1.25; margin-bottom: 0.6rem; }
+    .hero-content p { color: #cbd5e1; font-size: 0.98rem; }
+
+    /* NAV TABS */
+    nav.tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.25rem;
+    }
+    .tab-btn {
+      background: rgba(255, 255, 255, 0.08);
+      color: #e2e8f0;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      padding: 0.65rem 1.1rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .tab-btn:hover { background: rgba(255, 255, 255, 0.16); }
+    .tab-btn.active {
+      background: var(--gold-500);
+      color: var(--navy-950);
+      border-color: var(--gold-500);
+    }
+
+    /* MAIN SECTIONS */
+    main { padding: 2rem 1.25rem 4rem; }
+    .section { display: none; }
+    .section.active { display: block; animation: fadeIn 0.25s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      margin-bottom: 1.5rem;
+    }
+    .card h3 { color: var(--navy-900); font-size: 1.2rem; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
+    .badge-law {
+      background: var(--blue-50);
+      color: var(--blue-600);
+      border: 1px solid #bfdbfe;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.15rem 0.55rem;
+      border-radius: 6px;
+    }
+    .badge-revoked {
+      background: var(--red-50);
+      color: var(--red-600);
+      border: 1px solid #fecaca;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.15rem 0.55rem;
+      border-radius: 6px;
+    }
+
+    /* STUDY GUIDE GRID */
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.25rem; }
+    .study-list { padding-left: 1.2rem; color: var(--text-muted); }
+    .study-list li { margin-bottom: 0.5rem; }
+    .study-list strong { color: var(--text-main); }
+
+    table.comp-table { width: 100%; border-collapse: collapse; margin-top: 0.75rem; font-size: 0.9rem; }
+    table.comp-table th, table.comp-table td {
+      border: 1px solid var(--border);
+      padding: 0.75rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    table.comp-table th { background: var(--navy-900); color: #fff; }
+    table.comp-table tr:nth-child(even) { background: #f8fafc; }
+
+    /* QUIZ CONTROLS & STATS */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 0.9rem;
+      margin-bottom: 1.25rem;
+    }
+    .stat-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.9rem 1rem;
+      box-shadow: var(--shadow);
+    }
+    .stat-box span { display: block; font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; }
+    .stat-box strong { font-size: 1.45rem; color: var(--navy-900); }
+
+    .progress-wrap {
+      background: #e2e8f0;
+      height: 10px;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 1.25rem;
+    }
+    .progress-fill {
+      background: linear-gradient(90deg, var(--blue-600), var(--gold-500));
+      height: 100%;
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+    }
+    .filter-group { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .filter-btn {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 0.45rem 0.85rem;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+    .filter-btn.active { background: var(--navy-900); color: #fff; border-color: var(--navy-900); }
+    .search-input {
+      padding: 0.5rem 0.9rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.88rem;
+      min-width: 240px;
+    }
+
+    /* QUESTION CARD */
+    .q-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.4rem;
+      margin-bottom: 1.15rem;
+      box-shadow: var(--shadow);
+    }
+    .q-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.65rem;
+      gap: 0.5rem;
+    }
+    .q-num { font-weight: 800; color: var(--navy-900); font-size: 0.9rem; }
+    .q-cat {
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+      background: #f1f5f9;
+      color: var(--navy-800);
+    }
+    .q-text { font-weight: 600; font-size: 1.02rem; margin-bottom: 1rem; color: var(--text-main); }
+
+    .options { display: flex; flex-direction: column; gap: 0.55rem; }
+    .opt-btn {
+      text-align: left;
+      background: #f8fafc;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      font-size: 0.93rem;
+      cursor: pointer;
+      transition: all 0.15s;
+      color: var(--text-main);
+      display: flex;
+      gap: 0.65rem;
+      align-items: flex-start;
+    }
+    .opt-btn:hover:not(:disabled) { border-color: var(--blue-600); background: var(--blue-50); }
+    .opt-btn:disabled { cursor: default; }
+    .opt-letter {
+      font-weight: 800;
+      min-width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      background: #e2e8f0;
+      color: var(--navy-900);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      margin-top: 1px;
+    }
+    .opt-btn.correct { background: var(--green-50); border-color: var(--green-600); }
+    .opt-btn.correct .opt-letter { background: var(--green-600); color: #fff; }
+    .opt-btn.wrong { background: var(--red-50); border-color: var(--red-600); }
+    .opt-btn.wrong .opt-letter { background: var(--red-600); color: #fff; }
+
+    .explanation {
+      margin-top: 0.9rem;
+      padding: 0.9rem 1rem;
+      background: #f8fafc;
+      border-left: 4px solid var(--gold-500);
+      border-radius: 0 8px 8px 0;
+      font-size: 0.9rem;
+      color: var(--navy-800);
+      display: none;
+    }
+    .explanation.show { display: block; }
+
+    /* BUTTONS */
+    .btn {
+      background: var(--navy-900);
+      color: #fff;
+      border: none;
+      padding: 0.7rem 1.25rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .btn:hover { opacity: 0.92; }
+    .btn-gold { background: var(--gold-500); color: var(--navy-950); }
+    .btn-outline { background: transparent; border: 1.5px solid var(--border); color: var(--text-main); }
+
+    /* CERTIFICATE GENERATOR */
+    .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-bottom: 1.25rem; }
+    .form-group label { display: block; font-size: 0.84rem; font-weight: 700; margin-bottom: 0.35rem; color: var(--navy-800); }
+    .form-group input, .form-group select {
+      width: 100%;
+      padding: 0.65rem 0.85rem;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.94rem;
+    }
+
+    .cert-preview-wrap {
+      overflow-x: auto;
+      padding: 1rem 0;
+    }
+    #certificate-sheet {
+      width: 960px;
+      min-height: 660px;
+      margin: 0 auto;
+      background: #ffffff;
+      border: 12px solid var(--navy-900);
+      outline: 3px solid var(--gold-500);
+      outline-offset: -20px;
+      padding: 3rem 3.5rem;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: center;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.14);
+    }
+    .cert-top { border-bottom: 2px solid var(--gold-500); padding-bottom: 1rem; }
+    .cert-top small { text-transform: uppercase; letter-spacing: 2.5px; color: var(--navy-700); font-weight: 700; font-size: 0.78rem; }
+    .cert-top h2 { font-size: 2.25rem; color: var(--navy-900); letter-spacing: 2px; margin-top: 0.3rem; font-family: Georgia, serif; }
+    .cert-body { margin: 1.5rem 0; }
+    .cert-body p { font-size: 1.05rem; color: #334155; max-width: 760px; margin: 0 auto 0.85rem; }
+    .cert-student {
+      font-size: 2rem;
+      font-family: Georgia, serif;
+      font-weight: 700;
+      color: var(--navy-950);
+      border-bottom: 1.5px solid #cbd5e1;
+      display: inline-block;
+      padding: 0.2rem 2rem;
+      margin: 0.4rem 0 0.75rem;
+    }
+    .cert-meta {
+      display: inline-block;
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      padding: 0.45rem 1.2rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--navy-900);
+      margin-bottom: 1rem;
+    }
+    .cert-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 2rem;
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+    }
+    .sig-block { flex: 1; text-align: center; }
+    .sig-line {
+      border-top: 1.5px solid var(--navy-900);
+      padding-top: 0.45rem;
+      font-size: 0.88rem;
+      color: var(--navy-900);
+    }
+    .sig-script {
+      font-family: "Brush Script MT", Georgia, cursive;
+      font-size: 1.65rem;
+      color: var(--navy-900);
+      margin-bottom: -4px;
+    }
+    .auth-box {
+      text-align: left;
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      padding: 0.65rem 0.9rem;
+      border-radius: 6px;
+      max-width: 340px;
+    }
+
+    footer {
+      background: var(--navy-950);
+      color: #94a3b8;
+      text-align: center;
+      padding: 1.75rem 1rem;
+      font-size: 0.85rem;
+      border-top: 2px solid var(--navy-800);
+    }
+    footer strong { color: #f8fafc; }
+
+    /* PRINT STYLES FOR CERTIFICATE */
+    @media print {
+      body * { visibility: hidden; }
+      #certificate-sheet, #certificate-sheet * { visibility: visible; }
+      #certificate-sheet {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        box-shadow: none;
+        page-break-inside: avoid;
+      }
+      @page { size: landscape; margin: 0.5cm; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="top-bar">
+      <div class="brand">
+        <div class="shield-icon">SP</div>
+        <div>
+          <h1>SEGPRIV BRASIL</h1>
+          <span>Portal Gratuito de Capacitação e Legislação da Segurança Privada</span>
+        </div>
+      </div>
+      <div class="author-pill">
+        Autoria e Curadoria: <strong>Miqueias Souza</strong> — Gestor de Segurança Privada
+      </div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-badge">Legislação Atualizada • Lei 14.967/2024 • Decreto 13.012/2026 • IN PF 340/2026</div>
+      <h2>Domine a Nova Legislação da Segurança Privada no Brasil</h2>
+      <p>Aprenda a interpretar o novo Estatuto da Segurança Privada, entenda o que foi revogado, resolva 100 questões comentadas com casos práticos e emita seu certificado gratuito de capacitação.</p>
+    </div>
+
+    <nav class="tabs">
+      <button class="tab-btn active" onclick="switchTab('guia', this)">1. Guia de Leitura da Lei</button>
+      <button class="tab-btn" onclick="switchTab('quiz', this)">2. 100 Questões Comentadas</button>
+      <button class="tab-btn" onclick="switchTab('certificado', this)">3. Emitir Certificado</button>
+      <button class="tab-btn" onclick="switchTab('autor', this)">4. Sobre o Autor</button>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- ABA 1: GUIA DE LEITURA DA LEI -->
+  <section id="tab-guia" class="section active">
+    <div class="card">
+      <h3>Como Ler e Entender a Estrutura Legal Atual <span class="badge-law">Em Vigor</span></h3>
+      <p style="color: var(--text-muted); margin-bottom: 1rem;">
+        A segurança privada brasileira deixou para trás o modelo da década de 1980 e passou a operar sob uma arquitetura jurídica moderna, dividida em três níveis de normas:
+      </p>
+      <div class="grid-2">
+        <div style="background:#f8fafc; padding:1.1rem; border-radius:8px; border:1px solid var(--border);">
+          <h4 style="color:var(--navy-900); margin-bottom:0.4rem;">1º Nível: Lei Ordinária (O Estatuto)</h4>
+          <p style="font-size:0.9rem; color:var(--text-muted);">
+            <strong>Lei nº 14.967, de 9 de setembro de 2024:</strong> Instituiu o Estatuto da Segurança Privada e da Segurança das Instituições Financeiras. Define quais atividades são privativas do setor, quem são os profissionais reconhecidos (incluindo o Gestor de Segurança Privada e operadores de monitoramento), veda a atuação autônoma/cooperativas e estabelece o prazo de adaptação até <strong>setembro de 2027</strong>.
+          </p>
+        </div>
+        <div style="background:#f8fafc; padding:1.1rem; border-radius:8px; border:1px solid var(--border);">
+          <h4 style="color:var(--navy-900); margin-bottom:0.4rem;">2º Nível: Decreto Regulamentador</h4>
+          <p style="font-size:0.9rem; color:var(--text-muted);">
+            <strong>Decreto nº 13.012, de 9 de junho de 2026:</strong> Regulamenta a Lei nº 14.967/2024. Detalha o funcionamento das empresas especializadas, dos serviços orgânicos (inclusive em condomínios edilícios), do monitoramento eletrônico, do uso de cães adestrados, da emissão digital de documentos (validade de 2 anos) e fixa multas de <strong>R$ 1.000 a R$ 30.000</strong>.
+          </p>
+        </div>
+        <div style="background:#f8fafc; padding:1.1rem; border-radius:8px; border:1px solid var(--border);">
+          <h4 style="color:var(--navy-900); margin-bottom:0.4rem;">3º Nível: Normativos da Polícia Federal</h4>
+          <p style="font-size:0.9rem; color:var(--text-muted);">
+            <strong>IN DG/PF nº 340/2026 e Portarias nº 22 a 25/2026:</strong> Disciplinam a fiscalização via sistema GESP, Certificado de Segurança, planos de segurança bancária e de grandes eventos, grades curriculares dos cursos (Portaria 22), registro do Gestor de Segurança Privada (Portaria 23), ensino semipresencial (Portaria 24) e instrutores (Portaria 25).
+          </p>
+        </div>
+        <div style="background:#f8fafc; padding:1.1rem; border-radius:8px; border:1px solid var(--border);">
+          <h4 style="color:var(--navy-900); margin-bottom:0.4rem;">Normas Correlatas Essenciais</h4>
+          <p style="font-size:0.9rem; color:var(--text-muted);">
+            <strong>Armamento:</strong> Lei nº 10.826/2003 e Decreto nº 11.615/2023.<br>
+            <strong>Trabalho e Periculosidade:</strong> CLT (art. 193, II) e Lei nº 12.740/2012.<br>
+            <strong>Proteção de Dados (CFTV/Acesso):</strong> Lei nº 13.709/2018 (LGPD).
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Quadro Comparativo: O Que Foi Revogado vs. O Que Vale Hoje</h3>
+      <div style="overflow-x:auto;">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Tema</th>
+              <th>Norma Revogada <span class="badge-revoked">Não usar</span></th>
+              <th>Norma Vigente <span class="badge-law">Em vigor</span></th>
+              <th>Principal Mudança Prática</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Lei Base</strong></td>
+              <td>Lei nº 7.102/1983</td>
+              <td><strong>Lei nº 14.967/2024</strong></td>
+              <td>Incorporou monitoramento eletrônico, grandes eventos, portos, aeroportos, transporte coletivo e unidades de conservação.</td>
+            </tr>
+            <tr>
+              <td><strong>Decreto Geral</strong></td>
+              <td>Decreto nº 89.056/1983</td>
+              <td><strong>Decreto nº 13.012/2026</strong></td>
+              <td>Regulamentou empresas de monitoramento, segurança orgânica em condomínios, multas ao contratante irregular e documentos digitais.</td>
+            </tr>
+            <tr>
+              <td><strong>Norma Geral da PF</strong></td>
+              <td>Portaria DG/PF nº 18.045/2023 (e ant. 3.233/12)</td>
+              <td><strong>IN DG/PF nº 340/2026</strong></td>
+              <td>Modernizou o GESP, regras de comunicação (rádio/PoC), rondas privativas de vigilante e planos de segurança.</td>
+            </tr>
+            <tr>
+              <td><strong>Escolaridade do Vigilante</strong></td>
+              <td>4ª série (5º ano) do Ensino Fundamental</td>
+              <td><strong>Ensino Fundamental Completo</strong> (Lei 14.967 + Port. 22/2026)</td>
+              <td>Elevou a exigência de escolaridade mínima para ingresso na formação de vigilante.</td>
+            </tr>
+            <tr>
+              <td><strong>Gestor de Segurança</strong></td>
+              <td>Sem previsão expressa na lei federal</td>
+              <td><strong>Lei 14.967/2024 + Portaria 23/2026</strong></td>
+              <td>Reconhecimento legal como profissional da segurança privada (nível superior) com registro na Polícia Federal.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="margin-top:1.25rem; text-align:right;">
+        <button class="btn btn-gold" onclick="switchTab('quiz', document.querySelectorAll('.tab-btn')[1])">Ir para as 100 Questões Comentadas →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABA 2: SIMULADO 100 QUESTÕES -->
+  <section id="tab-quiz" class="section">
+    <div class="stats-bar">
+      <div class="stat-box"><span>Respondidas</span><strong id="st-answered">0 / 100</strong></div>
+      <div class="stat-box"><span>Acertos</span><strong id="st-correct" style="color:var(--green-600);">0</strong></div>
+      <div class="stat-box"><span>Aproveitamento</span><strong id="st-rate">0%</strong></div>
+      <div class="stat-box"><span>Status Certificado</span><strong id="st-cert-status" style="font-size:1rem; color:var(--blue-600);">Mín. 20 questões (70%)</strong></div>
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-fill" id="progress-fill"></div>
+    </div>
+
+    <div class="toolbar">
+      <div class="filter-group" id="cat-filters">
+        <button class="filter-btn active" data-cat="all" onclick="setFilter('all', this)">Todas (100)</button>
+        <button class="filter-btn" data-cat="lei" onclick="setFilter('lei', this)">Lei 14.967/2024 (20)</button>
+        <button class="filter-btn" data-cat="decreto" onclick="setFilter('decreto', this)">Decreto 13.012/2026 (20)</button>
+        <button class="filter-btn" data-cat="pf" onclick="setFilter('pf', this)">Normativos PF 2026 (20)</button>
+        <button class="filter-btn" data-cat="revogado" onclick="setFilter('revogado', this)">Revogado vs. Em Vigor (20)</button>
+        <button class="filter-btn" data-cat="pratico" onclick="setFilter('pratico', this)">Casos Práticos (20)</button>
+      </div>
+      <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+        <input type="text" id="search-box" class="search-input" placeholder="Buscar palavra-chave ou artigo..." oninput="renderQuestions()" />
+        <button class="btn btn-outline" onclick="resetProgress()">Zerar Progresso</button>
+      </div>
+    </div>
+
+    <div id="questions-container"></div>
+  </section>
+
+  <!-- ABA 3: GERADOR DE CERTIFICADO -->
+  <section id="tab-certificado" class="section">
+    <div class="card">
+      <h3>Emissão de Certificado de Capacitação</h3>
+      <p style="color:var(--text-muted); margin-bottom:1rem;" id="cert-eligibility-msg">
+        Para liberar a emissão oficial do certificado, responda a pelo menos <strong>20 questões</strong> com aproveitamento mínimo de <strong>70%</strong>. Quanto mais questões você concluir (até 100/100), maior será a carga horária certificada (20h, 40h ou 60h).
+      </p>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="inp-name">Nome Completo do Participante *</label>
+          <input type="text" id="inp-name" placeholder="Ex.: Carlos Alberto da Silva" oninput="updateCertPreview()" />
+        </div>
+        <div class="form-group">
+          <label for="inp-doc">CPF ou Documento / Matrícula Profissional *</label>
+          <input type="text" id="inp-doc" placeholder="Ex.: 000.000.000-00 ou Registro Profissional" oninput="updateCertPreview()" />
+        </div>
+        <div class="form-group">
+          <label for="inp-role">Área de Atuação / Categoria</label>
+          <select id="inp-role" onchange="updateCertPreview()">
+            <option value="Profissional de Segurança Privada">Profissional de Segurança Privada</option>
+            <option value="Vigilante Patrimonial / Especializado">Vigilante Patrimonial / Especializado</option>
+            <option value="Gestor de Segurança Privada">Gestor de Segurança Privada</option>
+            <option value="Operador / Supervisor de Monitoramento (CFTV)">Operador / Supervisor de Monitoramento (CFTV)</option>
+            <option value="Estudante / Pesquisador da Área Jurídica e Segurança">Estudante / Pesquisador da Área Jurídica e Segurança</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="inp-city">Cidade / UF (Opcional)</label>
+          <input type="text" id="inp-city" placeholder="Ex.: Salvador - BA" oninput="updateCertPreview()" />
+        </div>
+      </div>
+
+      <div style="display:flex; gap:0.75rem; flex-wrap:wrap; align-items:center;">
+        <button class="btn btn-gold" id="btn-print-cert" onclick="printCertificate()">Imprimir ou Salvar Certificado em PDF</button>
+        <span style="font-size:0.84rem; color:var(--text-muted);">Dica: Na janela de impressão, selecione <strong>"Salvar como PDF"</strong> e orientação <strong>Paisagem</strong>.</span>
+      </div>
+    </div>
+
+    <div class="cert-preview-wrap">
+      <div id="certificate-sheet">
+        <div class="cert-top">
+          <small>SEGPRIV BRASIL • Portal de Capacitação e Legislação da Segurança Privada</small>
+          <h2>CERTIFICADO DE CAPACITAÇÃO</h2>
+        </div>
+
+        <div class="cert-body">
+          <p>Certificamos para os devidos fins de capacitação profissional e atualização normativa que</p>
+          <div class="cert-student" id="cert-out-name">SEU NOME COMPLETO AQUI</div>
+          <div>
+            <span class="cert-meta" id="cert-out-doc">Documento de Identificação: Não informado • Categoria: Profissional de Segurança Privada</span>
+          </div>
+          <p id="cert-out-text">
+            concluiu com êxito o programa de estudo e avaliação comentada sobre a <strong>Nova Legislação da Segurança Privada no Brasil</strong> (Lei nº 14.967/2024, Decreto nº 13.012/2026, Instrução Normativa DG/PF nº 340/2026 e Portarias CGCSP/DPA/PF nº 22 a 25/2026), obtendo aproveitamento de <strong>0%</strong> na trilha de <strong>20 horas</strong>.
+          </p>
+        </div>
+
+        <div class="cert-footer">
+          <div class="auth-box">
+            <strong>Validação Documental</strong><br>
+            Data de Emissão: <span id="cert-out-date">--/--/----</span><br>
+            Código Verificador: <strong id="cert-out-code">SEGPRIV-0000-0000</strong><br>
+            Modalidade: Curso Livre de Atualização (Lei nº 9.394/96)
+          </div>
+
+          <div class="sig-block">
+            <div class="sig-script">Miqueias Souza</div>
+            <div class="sig-line">
+              <strong>Miqueias Souza</strong><br>
+              Gestor de Segurança Privada<br>
+              <span style="font-size:0.78rem; color:#475569;">Autor e Coordenador Conteudista • SEGPRIV BRASIL</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABA 4: SOBRE O AUTOR -->
+  <section id="tab-autor" class="section">
+    <div class="card">
+      <h3>Sobre o Autor e o Propósito do Portal</h3>
+      <p style="margin-bottom:0.85rem;">
+        O portal <strong>SEGPRIV BRASIL</strong> foi idealizado e desenvolvido por <strong>Miqueias Souza, Gestor de Segurança Privada</strong>, com o objetivo de democratizar o acesso ao conhecimento jurídico e operacional atualizado da segurança privada no Brasil.
+      </p>
+      <p style="margin-bottom:0.85rem;">
+        Com a entrada em vigor do novo <strong>Estatuto da Segurança Privada (Lei nº 14.967/2024)</strong>, de seu decreto regulamentador (<strong>Decreto nº 13.012/2026</strong>) e das novas normas da Polícia Federal (<strong>IN nº 340/2026 e Portarias nº 22 a 25/2026</strong>), vigilantes, operadores de monitoramento, supervisores, gestores e contratantes precisam compreender com clareza o que mudou, quais normas antigas foram revogadas e como aplicar a lei em situações reais.
+      </p>
+      <div style="background:#f8fafc; border-left:4px solid var(--navy-900); padding:1rem; border-radius:0 8px 8px 0; font-size:0.9rem; color:var(--text-muted);">
+        <strong>Nota Institucional:</strong> Este portal é 100% gratuito e possui caráter educativo de atualização e capacitação livre (amparado pela Lei nº 9.394/1996 — LDB). Não substitui os cursos presenciais obrigatórios de formação, extensão ou reciclagem ministrados por escolas autorizadas pela Polícia Federal.
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <strong>SEGPRIV BRASIL</strong> — Portal Educativo da Legislação da Segurança Privada<br>
+    Autoria: <strong>Miqueias Souza • Gestor de Segurança Privada</strong> | Conteúdo atualizado conforme Lei nº 14.967/2024, Decreto nº 13.012/2026 e IN DG/PF nº 340/2026.
+  </div>
+</footer>
+
+<script>
+const CAT_LABELS = {
+  lei: "Lei nº 14.967/2024",
+  decreto: "Decreto nº 13.012/2026",
+  pf: "Normativos PF 2026",
+  revogado: "Revogado vs. Em Vigor",
+  pratico: "Caso Prático"
+};
+
+const QUESTIONS = [
+  // 1-20: LEI 14.967/2024
+  {id:1,cat:"lei",q:"Qual lei instituiu o novo Estatuto da Segurança Privada e da Segurança das Instituições Financeiras no Brasil?",o:["Lei nº 14.967, de 9 de setembro de 2024","Lei nº 7.102, de 20 de junho de 1983","Lei nº 10.826, de 22 de dezembro de 2003","Lei nº 13.429, de 31 de março de 2017"],a:0,e:"A Lei nº 14.967/2024 instituiu o Estatuto da Segurança Privada e da Segurança das Instituições Financeiras, revogando expressamente a Lei nº 7.102/1983."},
+  {id:2,cat:"lei",q:"De acordo com a Lei nº 14.967/2024, como é permitida a prestação de serviços de segurança privada?",o:["Por empresas especializadas autorizadas ou serviços orgânicos autorizados, vedada a atuação autônoma ou por cooperativas","Por trabalhadores autônomos cadastrados na prefeitura","Por meio de cooperativas de vigilantes sem fins lucrativos","Livremente por qualquer empresa de limpeza e conservação"],a:0,e:"O art. 4º, § 1º da Lei nº 14.967/2024 proíbe expressamente a prestação de serviços de segurança privada de forma autônoma ou por meio de cooperativas."},
+  {id:3,cat:"lei",q:"Qual órgão federal detém a competência para autorizar, controlar e fiscalizar as atividades de segurança privada?",o:["Polícia Federal","Guarda Civil Municipal","Corpo de Bombeiros Militar","Agência Nacional de Vigilância"],a:0,e:"Conforme o art. 44 da Lei nº 14.967/2024, compete à Polícia Federal autorizar, controlar e fiscalizar a segurança privada em todo o território nacional."},
+  {id:4,cat:"lei",q:"Qual o prazo máximo de adaptação previsto na Lei nº 14.967/2024 para que empresas e serviços preexistentes se adequem às novas exigências?",o:["Até 3 anos contados da publicação da lei (setembro de 2027)","30 dias improrrogáveis","10 anos","Não há prazo de adaptação"],a:0,e:"O art. 64 da Lei nº 14.967/2024 estabeleceu o prazo de até 3 anos para adaptação às novas exigências legais, encerrando-se em setembro de 2027."},
+  {id:5,cat:"lei",q:"Qual das atividades abaixo passou a integrar expressamente o rol de serviços de segurança privada da Lei nº 14.967/2024?",o:["Monitoramento de sistemas eletrônicos de segurança e rastreamento de numerário, bens ou valores","Serviço de jardinagem predial","Manutenção de elevadores residenciais","Recepção telefônica comercial"],a:0,e:"O art. 5º, VI da Lei nº 14.967/2024 incluiu formalmente o monitoramento de sistemas eletrônicos de segurança e o rastreamento de numerário, bens ou valores."},
+  {id:6,cat:"lei",q:"Qual a escolaridade mínima exigida pela Lei nº 14.967/2024 para o exercício da profissão de vigilante?",o:["Ensino Fundamental completo","Apenas saber ler e escrever","Ensino Superior completo","4ª série do Ensino Fundamental"],a:0,e:"O art. 28, III da Lei nº 14.967/2024 exige instrução correspondente ao Ensino Fundamental completo, elevando o patamar antigo da Lei 7.102/83."},
+  {id:7,cat:"lei",q:"Qual a idade mínima exigida pela Lei nº 14.967/2024 para ingressar na profissão de vigilante?",o:["21 anos","18 anos","25 anos","30 anos"],a:0,e:"O art. 28, II da Lei nº 14.967/2024 mantém a idade mínima de 21 anos para o exercício da profissão de vigilante."},
+  {id:8,cat:"lei",q:"Sobre o Gestor de Segurança Privada, a Lei nº 14.967/2024 estabelece que:",o:["É profissional da segurança privada com formação de nível superior","É cargo exclusivo de delegados aposentados","Não possui previsão legal no estatuto","Pode atuar sem qualquer registro perante a Polícia Federal"],a:0,e:"O art. 26, I e o art. 27 da Lei nº 14.967/2024 reconhecem o Gestor de Segurança Privada como profissional de nível superior integrante do setor."},
+  {id:9,cat:"lei",q:"A segurança em grandes eventos realizados em espaços de uso comum (estádios, ginásios, shows) está prevista na Lei nº 14.967/2024?",o:["Sim, constitui modalidade expressa de serviço de segurança privada","Não, é atribuição exclusiva de voluntários","Sim, mas apenas se houver menos de 50 pessoas","Não, a lei trata apenas de bancos"],a:0,e:"O art. 5º, II da Lei nº 14.967/2024 contempla expressamente a segurança de eventos em espaços de uso comum."},
+  {id:10,cat:"lei",q:"O que caracteriza os chamados 'serviços orgânicos de segurança privada' na Lei nº 14.967/2024?",o:["Serviços organizados por empresa ou condomínio edilício para proteção própria, sem comercialização a terceiros","Empresas terceirizadas que vendem vigilância armada para prefeituras","Cooperativas de segurança rural","Serviços prestados por policiais militares de folga"],a:0,e:"O art. 12 da Lei nº 14.967/2024 define os serviços orgânicos como aqueles instituídos por pessoa jurídica ou condomínio edilício em proveito próprio, vedada a prestação a terceiros."},
+  {id:11,cat:"lei",q:"Sobre o porte de arma de fogo do vigilante, a Lei nº 14.967/2024 determina que:",o:["É vinculado ao efetivo exercício do serviço e o armamento pertence à empresa ou instituição autorizada","Permite que o vigilante leve a arma da empresa para casa diariamente","Autoriza o vigilante a comprar pistola particular e usá-la no posto","Vale em todo o país mesmo durante as férias do profissional"],a:0,e:"O art. 31, IV da Lei nº 14.967/2024 assegura ao vigilante o porte de arma de fogo somente quando em efetivo exercício do serviço, sendo o armamento de propriedade da empresa/instituição."},
+  {id:12,cat:"lei",q:"Quais são os profissionais da segurança privada listados no art. 26 da Lei nº 14.967/2024?",o:["Gestor de segurança privada, vigilante, supervisor de monitoramento, técnico externo de sistema eletrônico e operador de sistema eletrônico","Apenas vigilante patrimonial e escolta armada","Porteiro, zelador, recepcionista e vigia","Policial militar, guarda municipal e bombeiro"],a:0,e:"O art. 26 da Lei nº 14.967/2024 ampliou o quadro profissional para incluir gestores, vigilantes, supervisores, técnicos externos e operadores de sistemas eletrônicos."},
+  {id:13,cat:"lei",q:"A segurança nos transportes coletivos terrestres, aquaviários e marítimos e o controle de acesso em portos e aeroportos estão abrangidos pela Lei nº 14.967/2024?",o:["Sim, ambos constam expressamente no rol de serviços de segurança privada do art. 5º","Apenas transporte aéreo","Apenas transporte ferroviário de cargas","Não, são regulados apenas pelo Código de Trânsito"],a:0,e:"O art. 5º, incisos III e XII da Lei nº 14.967/2024 inclui expressamente a segurança nos transportes coletivos e o controle de acesso em portos e aeroportos."},
+  {id:14,cat:"lei",q:"Qual direito processual penal é assegurado ao vigilante pela Lei nº 14.967/2024 por ato decorrente do exercício da atividade?",o:["Prisão especial enquanto não transitar em julgado a sentença condenatória","Imunidade penal absoluta","Julgamento pela Justiça Militar","Dispensa de inquérito policial"],a:0,e:"O art. 31, II da Lei nº 14.967/2024 garante prisão especial ao vigilante por ato decorrente do exercício da atividade profissional até o trânsito em julgado."},
+  {id:15,cat:"lei",q:"Sobre o uniforme do vigilante, a Lei nº 14.967/2024 estabelece que deve ser fornecido:",o:["Às expensas do empregador, sem desconto no salário do trabalhador","Mediante desconto de 50% no contracheque do vigilante","Pelo próprio vigilante em lojas militares","Pela Polícia Federal"],a:0,e:"O art. 31, III da Lei nº 14.967/2024 assegura o fornecimento de uniforme especial às expensas do empregador."},
+  {id:16,cat:"lei",q:"A segurança perimetral nas muralhas e guaritas de estabelecimentos prisionais pode ser executada por empresa de segurança privada?",o:["Sim, desde que restrita à segurança perimetral externa de muralhas e guaritas, sem contato interno de custódia","Sim, inclusive na revista íntima e custódia interna de presos","Não, em hipótese alguma","Apenas por cooperativas"],a:0,e:"O art. 5º, IV da Lei nº 14.967/2024 permite a segurança perimetral nas muralhas e guaritas de estabelecimentos prisionais, preservando as funções indelegáveis do Estado."},
+  {id:17,cat:"lei",q:"Quais sanções administrativas a Polícia Federal pode aplicar às empresas infratoras conforme a Lei nº 14.967/2024?",o:["Advertência, multa, suspensão temporária de funcionamento e cancelamento da autorização","Apenas advertência verbal","Prisão administrativa do sócio","Confisco imediato de imóveis"],a:0,e:"O art. 49 da Lei nº 14.967/2024 prevê advertência, multa, suspensão temporária e cancelamento da autorização de funcionamento."},
+  {id:18,cat:"lei",q:"As instituições financeiras podem funcionar sem plano de segurança aprovado pela Polícia Federal?",o:["Não, o funcionamento sem plano de segurança aprovado é vedado e sujeita a instituição a sanções e interdição","Sim, por até 5 anos","Sim, se tiverem seguro contra roubo","Apenas em cidades do interior"],a:0,e:"Os arts. 32 a 35 da Lei nº 14.967/2024 proíbem o funcionamento de dependência de instituição financeira sem plano de segurança previamente aprovado pela Polícia Federal."},
+  {id:19,cat:"lei",q:"O seguro de vida em grupo para o vigilante é obrigatório segundo a Lei nº 14.967/2024?",o:["Sim, é direito assegurado ao vigilante e deve ser custeado pelo empregador","É opcional, dependendo de adesão voluntária paga pelo empregado","Aplica-se apenas a vigilantes de carros-forte","Foi extinto pelo novo estatuto"],a:0,e:"O art. 31, I da Lei nº 14.967/2024 mantém o seguro de vida em grupo como direito obrigatório do vigilante."},
+  {id:20,cat:"lei",q:"A segurança em unidades de conservação ambiental (parques nacionais, reservas) está prevista na Lei nº 14.967/2024?",o:["Sim, consta expressamente no inciso V do art. 5º","Não, apenas áreas urbanas são abrangidas","Apenas se houver agências bancárias no parque","Foi vetada integralmente"],a:0,e:"O art. 5º, V da Lei nº 14.967/2024 inclui expressamente a segurança em unidades de conservação no rol de serviços de segurança privada."},
+
+  // 21-40: DECRETO 13.012/2026
+  {id:21,cat:"decreto",q:"Qual decreto regulamentou a Lei nº 14.967/2024 em junho de 2026?",o:["Decreto nº 13.012, de 9 de junho de 2026","Decreto nº 89.056, de 24 de novembro de 1983","Decreto nº 11.615, de 21 de julho de 2023","Decreto nº 9.847, de 25 de junho de 2019"],a:0,e:"O Decreto nº 13.012, de 9 de junho de 2026 (publicado em 10/06/2026), regulamentou o Estatuto da Segurança Privada e revogou o Decreto nº 89.056/1983."},
+  {id:22,cat:"decreto",q:"De acordo com o Decreto nº 13.012/2026, qual é o prazo de validade dos documentos de identificação profissional emitidos eletronicamente pela Polícia Federal?",o:["2 anos","5 anos","10 anos","Indeterminado"],a:0,e:"O Decreto nº 13.012/2026 estabeleceu a emissão eletrônica da identificação profissional com validade de 2 anos, alinhada ao ciclo de atualização/reciclagem."},
+  {id:23,cat:"decreto",q:"Qual a faixa de valores das multas administrativas estabelecida pelo Decreto nº 13.012/2026 para infrações na segurança privada?",o:["De R$ 1.000,00 a R$ 30.000,00 (podendo ser dobrada na reincidência)","De R$ 50,00 a R$ 500,00","Fixa em R$ 100.000,00 para qualquer infração","Não há previsão de multa pecuniária"],a:0,e:"O Decreto nº 13.012/2026 fixa multas administrativas entre R$ 1.000,00 e R$ 30.000,00 conforme a gravidade, dobradas em caso de reincidência."},
+  {id:24,cat:"decreto",q:"Segundo o Decreto nº 13.012/2026, o contratante (tomador de serviços) que contrata empresa clandestina de segurança privada está sujeito a penalidades?",o:["Sim, pode ser autuado e multado pela Polícia Federal por contratar serviço não autorizado","Não, apenas a empresa prestadora responde","Apenas se ocorrer homicídio no local","Apenas órgãos públicos sofrem sanção"],a:0,e:"O Decreto nº 13.012/2026 responsabiliza administrativamente quem contrata serviços de segurança privada de empresas sem autorização da Polícia Federal."},
+  {id:25,cat:"decreto",q:"O que dispõe o Decreto nº 13.012/2026 sobre condomínios edilícios (residenciais ou comerciais)?",o:["Podem instituir serviço orgânico próprio mediante autorização da PF ou contratar empresa especializada autorizada","Estão proibidos de ter qualquer tipo de segurança","Podem contratar vigilantes armados autônomos sem registro na PF","São equiparados a instituições financeiras"],a:0,e:"O Decreto nº 13.012/2026 detalha as regras para condomínios edilícios constituírem serviço orgânico próprio autorizado pela PF ou contratarem empresa especializada."},
+  {id:26,cat:"decreto",q:"Sobre o uso de cães adestrados na vigilância patrimonial, o Decreto nº 13.012/2026 determina que:",o:["É permitido desde que o cão seja conduzido por vigilante habilitado e restrito ao interior do imóvel vigiado","Permite soltar cães em vias públicas durante a noite","Autoriza o uso de cães por qualquer porteiro sem curso","É totalmente proibido no Brasil"],a:0,e:"O Decreto nº 13.012/2026 autoriza o emprego de cães adestrados exclusivamente dentro dos limites do estabelecimento vigiado e sob condução de vigilante capacitado."},
+  {id:27,cat:"decreto",q:"Qual exigência o Decreto nº 13.012/2026 impõe às empresas de monitoramento eletrônico de sistemas de segurança?",o:["Autorização da Polícia Federal, central com redundância de energia e comunicação e cadastro técnico dos operadores/supervisores","Apenas alvará municipal de funcionamento","Registro exclusivo no CREA","Posse obrigatória de carros-forte"],a:0,e:"O Decreto nº 13.012/2026 regulamenta as empresas de monitoramento eletrônico, exigindo autorização da PF, infraestrutura com redundância e habilitação profissional."},
+  {id:28,cat:"decreto",q:"Sobre o atendimento tático (pronta-resposta) das empresas de monitoramento eletrônico, o Decreto nº 13.012/2026 estabelece que:",o:["É atividade desarmada de verificação externa do imóvel e acionamento policial, sem poder de polícia","Autoriza abordagem armada e revista pessoal em transeuntes na rua","Permite perseguição policial com sirene e giroflex vermelho","Substitui a Polícia Militar em ocorrências criminais"],a:0,e:"O atendimento tático de monitoramento é estritamente desarmado e preventivo, voltado à verificação externa de disparos de alarme e acionamento das forças policiais."},
+  {id:29,cat:"decreto",q:"De acordo com o Decreto nº 13.012/2026, qual requisito é exigido para o registro do Técnico Externo de Sistema Eletrônico de Segurança?",o:["Comprovação de idoneidade (ausência de antecedentes criminais dolosos) e capacitação técnica específica","Curso de formação de escolta armada","Diploma de doutorado em engenharia","Porte de arma de calibre restrito"],a:0,e:"O Decreto nº 13.012/2026 exige idoneidade cadastral e qualificação técnica para o registro dos técnicos externos que instalam e mantêm sistemas eletrônicos de segurança."},
+  {id:30,cat:"decreto",q:"O Decreto nº 13.012/2026 exige que o uniforme dos profissionais de segurança privada:",o:["Seja previamente aprovado pela Polícia Federal e não se confunda com fardamentos das Forças Armadas ou forças policiais","Seja idêntico ao uniforme da Polícia Militar do respectivo estado","Tenha camuflagem militar padrão Exército","Não possua identificação da empresa"],a:0,e:"O decreto reforça a vedação de semelhança com fardamentos militares ou policiais, exigindo aprovação prévia e identificação visível da empresa."},
+  {id:31,cat:"decreto",q:"Qual documento comprova que uma empresa especializada possui condições operacionais e instalações aprovadas pela Polícia Federal?",o:["Autorização de Funcionamento e Certificado de Segurança","Certidão Negativa de Débitos Municipais","Alvará da Vigilância Sanitária","Registro na Junta Comercial apenas"],a:0,e:"O Decreto nº 13.012/2026 vincula a operação regular à Autorização de Funcionamento e ao Certificado de Segurança expedidos pela Polícia Federal."},
+  {id:32,cat:"decreto",q:"O Decreto nº 13.012/2026 permite que uma empresa de segurança privada preste serviços em outro Estado da Federação?",o:["Sim, desde que obtenha autorização específica da Polícia Federal para atuar naquela unidade federativa","Sim, automaticamente sem comunicar a PF do outro Estado","Não, empresas são restritas a um único município","Apenas se abrir uma cooperativa local"],a:0,e:"A atuação em outra unidade da federação exige autorização específica perante a delegacia da Polícia Federal do respectivo Estado, comprovando estrutura local."},
+  {id:33,cat:"decreto",q:"Sobre o transporte de valores, o Decreto nº 13.012/2026 estabelece que a guarnição mínima de veículo especial (carro-forte) é composta por:",o:["Quatro vigilantes habilitados em transporte de valores, incluindo o motorista","Apenas um motorista desarmado","Dois estagiários e um supervisor","Três operadores de monitoramento"],a:0,e:"O decreto mantém a exigência de guarnição mínima de 4 vigilantes especializados em transporte de valores para operação de veículo especial blindado."},
+  {id:34,cat:"decreto",q:"O que o Decreto nº 13.012/2026 prevê quanto à revisão/atualização cadastral das empresas autorizadas?",o:["Deve ser requerida periodicamente no sistema eletrônico da Polícia Federal antes do vencimento","É dispensada após os primeiros 5 anos","Ocorre apenas quando há troca de vigilantes","É feita pelos sindicatos laborais"],a:0,e:"As empresas devem manter seus requisitos permanentemente regulares e protocolar a revisão periódica nos prazos definidos pela Polícia Federal."},
+  {id:35,cat:"decreto",q:"Segundo o Decreto nº 13.012/2026, o serviço orgânico de segurança pode utilizar armamento de fogo?",o:["Sim, desde que devidamente autorizado pela Polícia Federal e restrito ao perímetro do estabelecimento","Não, serviços orgânicos são sempre desarmados","Sim, sem necessidade de registro no SINARM","Apenas armas de pressão"],a:0,e:"Serviços orgânicos autorizados pela PF podem utilizar armamento institucional registrado no SINARM, estritamente dentro dos limites do imóvel autorizado."},
+  {id:36,cat:"decreto",q:"Em relação às escolas de formação de profissionais de segurança privada, o Decreto nº 13.012/2026 determina que:",o:["São empresas especializadas sujeitas à autorização e fiscalização da Polícia Federal","Podem funcionar livremente como cursos livres de bairro","São fiscalizadas apenas pelo DETRAN","Não precisam de estande de tiro próprio ou conveniado"],a:0,e:"As escolas de formação constituem modalidade regulada (art. 5º, X da Lei 14.967) e dependem de autorização e vistoria da Polícia Federal."},
+  {id:37,cat:"decreto",q:"Qual atribuição o Decreto nº 13.012/2026 destaca para o Gestor de Segurança Privada nas organizações?",o:["Planejamento estratégico, análise de riscos, elaboração de planos de segurança e gestão das operações de segurança privada","Substituir o delegado da Polícia Federal nas vistorias","Realizar escolta armada sem curso de extensão","Assinar balanços contábeis como contador"],a:0,e:"O decreto detalha as competências técnicas do Gestor de Segurança Privada na gestão de riscos, planejamento e supervisão dos planos e serviços de segurança."},
+  {id:38,cat:"decreto",q:"Quando ocorre extravio, furto ou roubo de arma de fogo de empresa de segurança privada, o Decreto nº 13.012/2026 exige:",o:["Comunicação imediata à Polícia Federal e registro de ocorrência policial","Comunicação apenas no balanço anual","Nenhuma providência se a arma tiver seguro","Apenas aviso verbal ao cliente"],a:0,e:"Qualquer ocorrência envolvendo armamento institucional exige registro policial imediato e comunicação formal à Polícia Federal."},
+  {id:39,cat:"decreto",q:"O Decreto nº 13.012/2026 permite a utilização de armas e munições menos letais (não letais) na segurança privada?",o:["Sim, observadas as normas da Polícia Federal, do Comando do Exército e a habilitação específica do vigilante","Não, apenas revólver calibre .38 é permitido","Sim, por qualquer funcionário sem treinamento","Apenas em bancos federais"],a:0,e:"O decreto admite o emprego de equipamentos e munições menos letais (como espargidores e armas de incapacitação neuromuscular) por vigilantes habilitados."},
+  {id:40,cat:"decreto",q:"Qual efeito o Decreto nº 13.012/2026 produziu sobre o antigo Decreto nº 89.056/1983?",o:["Revogou-o expressamente e integralmente","Manteve-o parcialmente em vigor para bancos","Prorrogou sua vigência até 2035","Alterou apenas o número do decreto"],a:0,e:"O Decreto nº 13.012/2026 revogou expressamente o Decreto nº 89.056/1983, encerrando sua vigência no ordenamento jurídico brasileiro."},
+
+  // 41-60: NORMATIVOS DA POLÍCIA FEDERAL (2026)
+  {id:41,cat:"pf",q:"Qual Instrução Normativa da Polícia Federal publicada em 2026 substituiu a Portaria DG/PF nº 18.045/2023?",o:["Instrução Normativa DG/PF nº 340, de 31 de julho de 2026","Portaria nº 3.233/2012","Instrução Normativa RFB nº 2.100/2022","Resolução CONTRAN nº 900/2022"],a:0,e:"A Instrução Normativa DG/PF nº 340, de 31 de julho de 2026 (publicada em agosto de 2026), revogou a Portaria nº 18.045/2023 e passou a disciplinar os procedimentos da PF."},
+  {id:42,cat:"pf",q:"Qual Portaria da CGCSP/DPA/PF de junho de 2026 regulamentou o registro profissional e a Carteira Nacional do Gestor de Segurança Privada?",o:["Portaria nº 23-CGCSP/DPA/PF, de 10 de junho de 2026","Portaria nº 16/2024","Portaria nº 17/2024","Portaria nº 25/2026"],a:0,e:"A Portaria nº 23-CGCSP/DPA/PF, de 10 de junho de 2026, disciplina o registro do Gestor de Segurança Privada perante a Polícia Federal."},
+  {id:43,cat:"pf",q:"Qual Portaria de junho de 2026 estabeleceu as novas grades curriculares e cargas horárias dos cursos de formação, extensão e atualização de vigilantes?",o:["Portaria nº 22-CGCSP/DPA/PF, de 15 de junho de 2026","Portaria nº 23/2026","Portaria nº 24/2026","Portaria nº 25/2026"],a:0,e:"A Portaria nº 22-CGCSP/DPA/PF, de 15 de junho de 2026, substituiu a Portaria nº 16/2024 e fixou as matrizes curriculares dos cursos."},
+  {id:44,cat:"pf",q:"Sobre o ensino semipresencial nas escolas de formação, a Portaria nº 24-CGCSP/DPA/PF de 2026 determina que:",o:["Apenas disciplinas teóricas autorizadas podem ocorrer a distância, sendo obrigatória a presencialidade nas práticas (tiro, defesa pessoal, primeiros socorros)","Todo o curso de vigilante pode ser feito 100% online pelo celular","O tiro real pode ser substituído por simulador doméstico","O ensino semipresencial foi totalmente proibido"],a:0,e:"A Portaria nº 24/2026 admite carga teórica a distância dentro de critérios rígidos, mantendo 100% presenciais as disciplinas práticas essenciais."},
+  {id:45,cat:"pf",q:"Qual Portaria de junho de 2026 passou a regular o credenciamento de instrutores das escolas de formação?",o:["Portaria nº 25-CGCSP/DPA/PF, de 10 de junho de 2026","Portaria nº 22/2026","Portaria nº 23/2026","Portaria nº 24/2026"],a:0,e:"A Portaria nº 25-CGCSP/DPA/PF, de 10 de junho de 2026, substituiu a Portaria nº 17/2024 e estabeleceu as regras de credenciamento de instrutores."},
+  {id:46,cat:"pf",q:"Qual é o sistema informatizado oficial da Polícia Federal utilizado para tramitação de processos, vistorias e registros da segurança privada?",o:["GESP (Gestão Eletrônica de Segurança Privada)","SISCOMEX","RENACH","SIAPE"],a:0,e:"A IN DG/PF nº 340/2026 disciplina a tramitação eletrônica de todos os requerimentos e autorizações por meio do sistema GESP."},
+  {id:47,cat:"pf",q:"Segundo a IN DG/PF nº 340/2026, a execução de rondas motorizadas ou a pé em condomínios ou complexos empresariais:",o:["É atividade privativa de vigilante dentro do perímetro autorizado, vedada ronda ostensiva armada em via pública aberta","Pode ser feita por qualquer motoboy terceirizado sem curso","É permitida em qualquer bairro público como policiamento privado","Não precisa de autorização da Polícia Federal"],a:0,e:"A IN DG/PF nº 340/2026 estabelece que rondas de segurança são privativas de vigilantes e restritas ao perímetro privado autorizado, vedado o patrulhamento ostensivo em via pública."},
+  {id:48,cat:"pf",q:"De acordo com a IN DG/PF nº 340/2026, os sistemas de comunicação operacional das empresas de segurança privada:",o:["Podem utilizar radiocomunicação ou tecnologia PoC/PTT com redundância, rastreabilidade e continuidade operacional","Devem usar exclusivamente pombo-correio ou apito","Estão proibidos de usar rádio digital","Dispensam qualquer meio de comunicação entre posto e central"],a:0,e:"A IN DG/PF nº 340/2026 modernizou os requisitos de comunicação, admitindo rádio e tecnologias PoC (Push-to-Talk over Cellular) com garantia de continuidade."},
+  {id:49,cat:"pf",q:"Com que periodicidade o vigilante deve realizar o curso de atualização (reciclagem) segundo as normas da Polícia Federal?",o:["A cada 2 anos","A cada 10 anos","Apenas uma vez na vida","A cada 6 meses"],a:0,e:"A validade da habilitação e da Carteira Nacional do Vigilante é de 2 anos, exigindo curso de atualização antes do vencimento."},
+  {id:50,cat:"pf",q:"Para atuar na segurança de eventos em espaços de uso comum (grandes eventos), o vigilante deve possuir:",o:["Curso de formação de vigilante e curso de extensão em segurança para grandes eventos","Apenas curso de brigadista voluntário","Carteira de motorista categoria E","Curso de mergulho profissional"],a:0,e:"Conforme a Portaria nº 22/2026 e a IN nº 340/2026, a atuação em grandes eventos exige a habilitação específica por meio do curso de extensão correspondente."},
+  {id:51,cat:"pf",q:"O que a IN DG/PF nº 340/2026 exige quanto à guarda do armamento nas empresas de segurança privada?",o:["Reserva de armamento (cofre/sala-cofre) segura, com controle rígido de entrada e saída e inventário atualizado no GESP","Guarda na residência do supervisor de turno","Armazenamento no porta-malas da viatura durante o fim de semana","Guarda em armário de madeira na recepção"],a:0,e:"A IN DG/PF nº 340/2026 impõe rigorosos padrões físicos de segurança para a reserva de armamento e controle eletrônico de cautela/devolução."},
+  {id:52,cat:"pf",q:"De acordo com a IN DG/PF nº 340/2026, o crachá/plaqueta de identificação funcional do vigilante em serviço:",o:["É de uso obrigatório e ostensivo no uniforme, contendo dados de identificação profissional","É opcional durante o turno noturno","Deve ficar guardado no bolso","Só é usado dentro de agências bancárias"],a:0,e:"O uso ostensivo da identificação funcional no uniforme é obrigatório durante todo o turno de serviço para fiscalização e identificação pelo público."},
+  {id:53,cat:"pf",q:"Para realizar o curso de extensão em Escolta Armada ou Transporte de Valores, qual pré-requisito o candidato deve cumprir?",o:["Possuir curso de formação de vigilante concluído e estar com a situação regular (sem antecedentes impeditivos)","Ter apenas 18 anos e ensino médio","Ser motorista de aplicativo há 1 ano","Não há pré-requisito"],a:0,e:"Os cursos de extensão (transporte de valores, escolta armada, segurança pessoal, grandes eventos) exigem a formação básica de vigilante válida."},
+  {id:54,cat:"pf",q:"O que acontece se uma empresa alterar seu endereço operacional ou ampliar sua reserva de armamento sem prévia vistoria da Polícia Federal?",o:["Incorre em infração administrativa prevista na IN DG/PF nº 340/2026 e no Decreto nº 13.012/2026","Nada acontece se comunicar no ano seguinte","A mudança é aprovada automaticamente por decurso de prazo","A empresa ganha isenção de taxas"],a:0,e:"Qualquer alteração de instalações físicas ou reserva de armamento depende de prévia aprovação e vistoria da Polícia Federal."},
+  {id:55,cat:"pf",q:"Qual órgão interno da Polícia Federal coordena nacionalmente o controle da segurança privada?",o:["CGCSP/DPA/PF (Coordenação-Geral de Controle de Serviços e Produtos)","Polícia Rodoviária Federal","Departamento de Polícia Legislativa","Receita Federal do Brasil"],a:0,e:"A CGCSP, vinculada à Diretoria de Polícia Administrativa (DPA) da Polícia Federal, coordena nacionalmente o setor, executada nos Estados pelas DELESPs e UCVs."},
+  {id:56,cat:"pf",q:"Segundo a Portaria nº 23/2026, qual documento comprova a habilitação do Gestor de Segurança Privada perante o mercado e a fiscalização?",o:["Carteira Nacional do Gestor de Segurança Privada expedida eletronicamente pela PF","Carteira da OAB","Registro no CRECI","Crachá emitido pelo síndico do condomínio"],a:0,e:"A Portaria nº 23-CGCSP/DPA/PF/2026 instituiu o registro oficial e a Carteira Nacional do Gestor de Segurança Privada."},
+  {id:57,cat:"pf",q:"Sobre o plano de segurança de grandes eventos na IN DG/PF nº 340/2026, quem deve apresentá-lo à Polícia Federal?",o:["A empresa especializada de segurança privada contratada (ou o organizador conforme regras aplicáveis), dentro do prazo antecedente estabelecido","O artista principal do show","A empresa de venda de bebidas","O motorista do ônibus da banda"],a:0,e:"O plano de segurança do evento deve ser protocolado antecipadamente perante a DELESP/UCV competente pela empresa autorizada responsável pela operação."},
+  {id:58,cat:"pf",q:"A IN DG/PF nº 340/2026 exige que as viaturas utilizadas por empresas de segurança privada:",o:["Possuam identificação visual da empresa e não utilizem giroflex vermelho ou caracterização semelhante às viaturas policiais","Usem sirene bitonal e luz vermelha intermitente idênticas às da Polícia Militar","Sejam totalmente descaracterizadas sem nome da empresa","Tenham blindagem nível tanque de guerra"],a:0,e:"As viaturas devem ostentar a identidade visual da empresa autorizada e jamais imitar viaturas policiais ou usar dispositivos exclusivos de emergência policial."},
+  {id:59,cat:"pf",q:"Para o credenciamento de instrutor na Polícia Federal (Portaria nº 25/2026), o profissional deve comprovar:",o:["Qualificação técnica/acadêmica na disciplina ministrada e idoneidade cadastral","Apenas amizade com o dono da escola","Posse de arma de calibre .50","Idade mínima de 60 anos"],a:0,e:"A Portaria nº 25/2026 exige comprovação de habilitação técnica/acadêmica específica para cada disciplina e certidões negativas criminais."},
+  {id:60,cat:"pf",q:"Qual é o status atual da antiga Portaria DG/PF nº 3.233/2012 e da Portaria DG/PF nº 18.045/2023?",o:["Ambas estão revogadas, vigorando atualmente a IN DG/PF nº 340/2026","Ambas continuam valendo juntas com a IN 340/2026","A Portaria 3.233/2012 voltou a vigorar em 2026","A Portaria 18.045/2023 vale apenas para escolas"],a:0,e:"A Portaria 3.233/2012 foi revogada pela Portaria 18.045/2023, e esta foi expressamente revogada pela IN DG/PF nº 340/2026."},
+
+  // 61-80: REVOGADO VS. EM VIGOR E LEIS CORRELATAS
+  {id:61,cat:"revogado",q:"Ao elaborar um contrato ou Procedimento Operacional Padrão (POP) hoje, qual fundamento legal principal deve ser citado para a segurança privada?",o:["Lei nº 14.967/2024, Decreto nº 13.012/2026 e IN DG/PF nº 340/2026","Lei nº 7.102/1983 e Decreto nº 89.056/1983","Apenas a Portaria nº 3.233/2012","Código Comercial de 1850"],a:0,e:"Citar a Lei 7.102/83, o Decreto 89.056/83 ou a Portaria 18.045/23 como normas vigentes é erro técnico grave, pois todas foram expressamente revogadas."},
+  {id:62,cat:"revogado",q:"Na antiga Lei nº 7.102/1983, exigia-se apenas a 4ª série (5º ano) do Ensino Fundamental para ser vigilante. Como ficou na legislação vigente?",o:["Exige-se Ensino Fundamental completo (Lei nº 14.967/2024, art. 28, III)","Exige-se Ensino Médio completo obrigatório para todos","Não se exige mais nenhuma escolaridade","Exige-se curso técnico em eletrônica"],a:0,e:"A Lei nº 14.967/2024 elevou a escolaridade mínima do vigilante para o Ensino Fundamental completo."},
+  {id:63,cat:"revogado",q:"Antes da Lei nº 14.967/2024, as empresas exclusivas de monitoramento eletrônico (alarmes e CFTV) não eram reguladas pela Lei 7.102/83. Como funciona hoje?",o:["Passaram a ser reguladas expressamente pela Lei nº 14.967/2024 e pelo Decreto nº 13.012/2026, sob fiscalização da Polícia Federal","Continuam sem qualquer regulação federal","Passaram a ser fiscalizadas pela ANATEL apenas","Foram proibidas de operar no Brasil"],a:0,e:"A inclusão das empresas de monitoramento eletrônico sob o controle da Polícia Federal é uma das maiores mudanças estruturais do novo Estatuto."},
+  {id:64,cat:"revogado",q:"Qual norma trabalhista garante o adicional de periculosidade de 30% aos vigilantes expostos a roubos ou violência física?",o:["Art. 193, inciso II da CLT (incluído pela Lei nº 12.740/2012) e art. 31 da Lei nº 14.967/2024","Lei do Inquilinato","Código de Defesa do Consumidor","Estatuto da Criança e do Adolescente"],a:0,e:"O art. 193, II da CLT (Lei nº 12.740/2012) e o Estatuto da Segurança Privada asseguram o adicional de periculosidade de 30%."},
+  {id:65,cat:"revogado",q:"Qual legislação regula o tratamento de imagens de câmeras de CFTV e dados biométricos coletados em portarias e controles de acesso?",o:["Lei nº 13.709/2018 (Lei Geral de Proteção de Dados — LGPD)","Lei de Diretrizes e Bases da Educação","Código Florestal","Lei das Sociedades Anônimas"],a:0,e:"Imagens identificáveis de pessoas e dados biométricos são dados pessoais (e dados sensíveis no caso da biometria) regidos pela LGPD (Lei nº 13.709/2018)."},
+  {id:66,cat:"revogado",q:"Qual lei federal rege o registro, a posse e o porte de armas de fogo utilizadas pelas empresas de segurança privada, em complemento ao Estatuto?",o:["Lei nº 10.826/2003 (Estatuto do Desarmamento) e Decreto nº 11.615/2023","Lei nº 8.078/1990","Lei nº 9.605/1998","Lei nº 11.340/2006"],a:0,e:"O armamento da segurança privada é registrado no SINARM e segue as regras da Lei nº 10.826/2003 e do Decreto nº 11.615/2023."},
+  {id:67,cat:"revogado",q:"Na contratação de serviços terceirizados de vigilância e segurança eletrônica por órgãos públicos (União, Estados, Municípios), qual lei de licitações se aplica?",o:["Lei nº 14.133/2021 (Nova Lei de Licitações e Contratos Administrativos)","Lei nº 8.666/1993 (revogada)","Decreto-Lei nº 200/1967 apenas","Lei das Contravenções Penais"],a:0,e:"A Lei nº 14.133/2021 é a norma vigente para licitações e contratos da Administração Pública direta, autárquica e fundacional."},
+  {id:68,cat:"revogado",q:"E quando uma empresa estatal (sociedade de economia mista ou empresa pública) contrata serviços de segurança privada, qual lei rege suas licitações e contratos?",o:["Lei nº 13.303/2016 (Estatuto Jurídico das Estatais)","Lei nº 7.102/1983","Decreto nº 89.056/1983","Estatuto do Torcedor"],a:0,e:"As empresas públicas e sociedades de economia mista seguem o regime próprio de licitações e contratos da Lei nº 13.303/2016."},
+  {id:69,cat:"revogado",q:"O que mudou em relação à atuação de cooperativas na segurança privada entre a antiga Lei 7.102/83 e a Lei 14.967/2024?",o:["A Lei 14.967/2024 vedou expressamente a prestação de serviços de segurança privada por meio de cooperativas ou profissionais autônomos","A Lei 14.967/2024 passou a incentivar cooperativas de vigilantes armados","Não houve qualquer menção a cooperativas","Cooperativas passaram a poder fazer transporte de valores"],a:0,e:"O art. 4º, § 1º da Lei nº 14.967/2024 encerrou definitivamente a polêmica ao proibir cooperativas e autônomos no setor."},
+  {id:70,cat:"revogado",q:"Sobre a Carteira Nacional do Vigilante (CNV), qual mudança operacional foi consolidada pelo Decreto nº 13.012/2026?",o:["Emissão em formato eletrônico digital pela Polícia Federal, com validade de 2 anos","Continua sendo emitida apenas em papel plastificado com validade de 5 anos","Passou a ser emitida pelos sindicatos patronais","Deixou de existir"],a:0,e:"O Decreto nº 13.012/2026 consolidou a emissão eletrônica da identificação profissional com validade bienal (2 anos)."},
+  {id:71,cat:"revogado",q:"Qual era a validade da Carteira Nacional do Vigilante (CNV) na sistemática antiga (Portaria 3.233/2012) em comparação com a norma atual?",o:["Antes era de 5 anos (exigindo reciclagem a cada 2 anos); hoje a validade do documento eletrônico é de 2 anos, alinhada à reciclagem","Antes era de 1 ano; hoje é de 20 anos","Antes não tinha validade; hoje vale 6 meses","Sempre foi de 10 anos"],a:0,e:"Antes havia descasamento entre a CNV de 5 anos e a reciclagem de 2 anos; hoje a validade de 2 anos unifica o ciclo documental e formativo."},
+  {id:72,cat:"revogado",q:"A prestação de segurança privada por policiais militares ou civis da ativa ('bico' de segurança) é permitida pela Lei nº 14.967/2024?",o:["Não, é ilegal e configura exercício irregular/clandestino de segurança privada, além de infração disciplinar militar/estatutária","Sim, desde que usem a arma da corporação","Sim, aos finais de semana","Sim, se o contratante for um comércio"],a:0,e:"A segurança privada só pode ser exercida por empresas ou serviços orgânicos autorizados pela PF, sendo vedada a atuação autônoma ou irregular."},
+  {id:73,cat:"revogado",q:"O que a Lei nº 14.967/2024 estabelece sobre o capital social mínimo integralizado das empresas de segurança privada?",o:["Estabelece patamares escalonados conforme as modalidades de serviço autorizadas, atualizáveis pelo Poder Executivo","Eliminou a exigência de capital social mínimo","Exige R$ 1,00 de capital social para transporte de valores","Permite integralização apenas com bens usados sem avaliação"],a:0,e:"O art. 17 da Lei nº 14.967/2024 fixa exigências proporcionais de capital social mínimo integralizado conforme o risco e a modalidade da empresa."},
+  {id:74,cat:"revogado",q:"Sobre a segurança em instituições financeiras, o que a Lei nº 14.967/2024 manteve e modernizou em relação à Lei 7.102/83?",o:["Manteve a obrigatoriedade do plano de segurança aprovado pela PF e modernizou as exigências de monitoramento eletrônico, portas de segurança e análise de risco","Dispensou vigilantes armados em todas as agências bancárias do país","Transferiu a fiscalização dos bancos para o Procon","Permitiu abertura de agência sem alarme"],a:0,e:"Os arts. 32 a 41 da Lei nº 14.967/2024 mantiveram a rigorosa proteção às instituições financeiras e cooperativas de crédito, atualizando os recursos tecnológicos."},
+  {id:75,cat:"revogado",q:"Qual a diferença jurídica entre 'Vigilante' e 'Vigia/Porteiro/Controlador de Acesso' na legislação vigente?",o:["Vigilante é profissional capacitado e registrado na PF para segurança preventiva/ostensiva (armada ou desarmada); vigia/porteiro realiza controle administrativo de portaria sem poder de vigilância","São exatamente a mesma profissão com nomes diferentes","Porteiro pode usar revólver se o síndico autorizar","Vigia pode fazer escolta armada de cargas"],a:0,e:"A jurisprudência trabalhista e as normas da PF distinguem claramente o vigilante (regulado pela Lei 14.967/2024) do porteiro/controlador de acesso (atividade administrativa/recepção)."},
+  {id:76,cat:"revogado",q:"Uma empresa de limpeza e conservação pode fornecer 'vigilantes desarmados' no mesmo contrato sem ter autorização da Polícia Federal?",o:["Não, pois a atividade de segurança privada exige objeto social exclusivo/compatível e autorização específica da PF","Sim, se o vigilante for desarmado não precisa de autorização da PF","Sim, basta ter CNAE de portaria","Apenas para hospitais privados"],a:0,e:"Tanto a vigilância armada quanto a desarmada constituem serviços de segurança privada privativos de empresas autorizadas pela Polícia Federal."},
+  {id:77,cat:"revogado",q:"Qual norma atual substituiu a antiga Portaria nº 16/2024 (currículos de cursos) e a Portaria nº 17/2024 (instrutores)?",o:["Portaria nº 22-CGCSP/DPA/PF/2026 e Portaria nº 25-CGCSP/DPA/PF/2026, respectivamente","Portaria nº 3.233/2012","Decreto nº 89.056/1983","IN RFB nº 1.234/2012"],a:0,e:"Em junho de 2026, a PF editou o pacote normativo composto pelas Portarias nº 22, 23, 24 e 25, atualizando currículos, gestores, ensino semipresencial e instrutores."},
+  {id:78,cat:"revogado",q:"Na Lei nº 14.967/2024, o gerenciamento de riscos em operações de transporte de numerário, bens ou valores é considerado:",o:["Serviço regulado de segurança privada (art. 5º, XI)","Atividade exclusiva de seguradoras estrangeiras","Atividade sem qualquer previsão na lei","Serviço exclusivo de transportadoras de alimentos"],a:0,e:"O art. 5º, XI da Lei nº 14.967/2024 incluiu expressamente o gerenciamento de riscos em operações de transporte de numerário, bens ou valores."},
+  {id:79,cat:"revogado",q:"As cooperativas singulares de crédito (como Sicoob, Sicredi, Cresol) estão sujeitas às regras de segurança das instituições financeiras da Lei nº 14.967/2024?",o:["Sim, o Estatuto equipara e abrange expressamente as cooperativas de crédito que movimentam numerário","Não, cooperativas de crédito são isentas de plano de segurança","Apenas se tiverem mais de 100 agências","São reguladas apenas pelo Ministério da Agricultura"],a:0,e:"O art. 32 da Lei nº 14.967/2024 inclui expressamente as cooperativas de crédito nas exigências de segurança das instituições financeiras."},
+  {id:80,cat:"revogado",q:"O que acontece com os processos e autorizações concedidos antes da Lei nº 14.967/2024 durante o período de transição?",o:["Permanecem válidos até o término de seus prazos, devendo a empresa adaptar-se integralmente às novas regras até setembro de 2027","Foram todos cancelados automaticamente no dia seguinte à lei","Ficaram isentos para sempre das novas regras","Foram transferidos para as prefeituras"],a:0,e:"O art. 64 da Lei nº 14.967/2024 assegura a transição ordenada de até 3 anos para adequação integral sem paralisar o setor."},
+
+  // 81-100: CASOS PRÁTICOS
+  {id:81,cat:"pratico",q:"CASO PRÁTICO: Um condomínio residencial contrata três 'vigias noturnos autônomos' que circulam armados de motocicleta pelas ruas do condomínio e até na rua externa. À luz da Lei 14.967/2024 e do Decreto 13.012/2026, essa prática é:",o:["Ilegal em múltiplos aspectos: veda-se segurança autônoma, exige-se autorização da PF (empresa especializada ou orgânica) e proíbe-se ronda armada em via pública","Legal, pois o síndico tem autonomia total dentro do bairro","Legal, desde que os autônomos tenham registro de CAC (colecionador/atirador)","Legal apenas se não houver disparos"],a:0,e:"Configura segurança clandestina e porte ilegal de arma. A Lei 14.967/2024 proíbe autônomos, o Decreto 13.012/2026 pune o contratante irregular e o registro de CAC não autoriza trabalho de segurança privada."},
+  {id:82,cat:"pratico",q:"CASO PRÁTICO: Um cidadão com registro de CAC (Caçador, Atirador e Colecionador) oferece serviços de segurança pessoal privada armada para um empresário usando sua própria pistola registrada no acervo de tiro desportivo. Qual a consequência jurídica?",o:["Ilegalidade grave: acervo de CAC não pode ser usado em segurança privada, e segurança pessoal armada só pode ser prestada por empresa especializada autorizada pela PF com arma da empresa","Totalmente legal se houver contrato particular assinado em cartório","Permitido se o empresário pagar o combustível","Legal apenas em deslocamentos interestaduais"],a:0,e:"A segurança pessoal privada (art. 5º, IX da Lei 14.967/2024) exige empresa autorizada pela PF, vigilante com extensão em segurança pessoal e armamento institucional da empresa."},
+  {id:83,cat:"pratico",q:"CASO PRÁTICO: Durante o turno noturno em uma indústria, um vigilante patrimonial desarmado identifica um invasor pulando o muro. Qual deve ser a conduta técnica e legal correta segundo os POPs e a legislação?",o:["Acionar imediatamente a central de monitoramento (C3) e a Polícia Militar, manter observação segura sem exceder a legítima defesa e registrar a ocorrência","Efetuar disparos de advertência para o alto com arma particular","Perseguir o invasor por 5 km em via pública usando viatura da empresa","Amarrar o invasor em um poste até o dia seguinte"],a:0,e:"O vigilante atua na prevenção e proteção patrimonial intramuros, devendo acionar o apoio policial e agir estritamente nos limites da legítima defesa (art. 25 do Código Penal)."},
+  {id:84,cat:"pratico",q:"CASO PRÁTICO: Uma central de monitoramento eletrônico (C3) recebe um alerta de intrusão às 02h00 em uma loja cliente e envia um agente de 'pronta-resposta tática'. Ao chegar, o agente encontra a porta arrombada e suspeitos no interior. Como ele deve proceder?",o:["Manter distância segura na área externa, monitorar visualmente e acionar imediatamente a Polícia Militar, sem ingressar armado ou exercer poder de polícia","Entrar no imóvel armado para prender os suspeitos","Bloquear a avenida principal com o carro da empresa","Interrogar moradores da rua exigindo documentos"],a:0,e:"Conforme o Decreto nº 13.012/2026, a pronta-resposta de monitoramento é desarmada e restrita à verificação externa e acionamento das forças policiais."},
+  {id:85,cat:"pratico",q:"CASO PRÁTICO: Uma empresa instala câmeras de reconhecimento facial na portaria de um complexo empresarial para liberar acesso de funcionários e visitantes. Para estar em conformidade com a LGPD (Lei nº 13.709/2018), o Gestor de Segurança deve garantir:",o:["Base legal adequada, aviso visível de monitoramento, política de retenção com prazo definido, controle de acesso restrito às imagens e segurança da informação","Publicação das imagens dos visitantes nas redes sociais da empresa","Armazenamento eterno das gravações em pen drive pessoal do porteiro","Compartilhamento livre do banco biométrico com empresas de marketing"],a:0,e:"Biometria facial é dado pessoal sensível (art. 5º, II da LGPD), exigindo transparência, finalidade específica, minimização, prazo de retenção e proteção contra vazamentos."},
+  {id:86,cat:"pratico",q:"CASO PRÁTICO: O Gestor de Segurança Privada de uma refinaria ou grande planta industrial vai elaborar o Mapa de Riscos e o Plano de Segurança Patrimonial. Segundo as boas práticas e a Portaria nº 23/2026, ele deve:",o:["Aplicar metodologia estruturada de gestão de riscos (como ISO 31000), alinhar os procedimentos à Lei 14.967/2024, Decreto 13.012/2026 e IN 340/2026, e manter seu registro ativo na PF","Copiar um modelo antigo baseado na Lei 7.102/83 sem vistoria","Delegar a assinatura técnica do plano ao operador de limpeza","Dispensar análise de vulnerabilidades perimetrais"],a:0,e:"O Gestor de Segurança Privada habilitado (Portaria nº 23/2026) lidera o diagnóstico de riscos, a conformidade normativa e a integração entre segurança física, eletrônica e procedimentos."},
+  {id:87,cat:"pratico",q:"CASO PRÁTICO: Uma produtora de eventos vai realizar um festival musical para 15.000 pessoas em um parque de exposições e contrata uma empresa de vigilância autorizada. Além do plano de segurança protocolado na PF, quais profissionais devem atuar na segurança do evento?",o:["Vigilantes habilitados com curso de extensão em segurança para grandes eventos, devidamente uniformizados e identificados","Apenas 'seguranças de festa' sem curso registrados como garçons","Menores de 18 anos contratados como monitores","Vigilantes com reciclagem vencida há 3 anos"],a:0,e:"A Lei nº 14.967/2024 e a IN DG/PF nº 340/2026 exigem vigilantes habilitados com extensão em grandes eventos e plano aprovado previamente pela PF."},
+  {id:88,cat:"pratico",q:"CASO PRÁTICO: Um vigilante encerra seu plantão de 12 horas às 19h00, mas seu rendição atrasa por motivo de força maior. Qual a conduta correta do vigilante no posto armado?",o:["Comunicar imediatamente a supervisão/C3 e aguardar a rendição no posto, pois o abandono de posto armado coloca em risco o patrimônio e o armamento sob sua guarda","Deixar o revólver em cima da mesa da portaria e ir embora para casa","Levar a arma da empresa no ônibus para devolver no dia seguinte","Entregar a arma para o porteiro do prédio vizinho"],a:0,e:"O vigilante é responsável pela guarda do armamento até a devida passagem de serviço e cautela, devendo acionar a supervisão para providenciar a rendição e registrar horas extras."},
+  {id:89,cat:"pratico",q:"CASO PRÁTICO: Uma empresa de comércio eletrônico deseja contratar uma empresa especializada exclusivamente para monitorar remotamente as câmeras e alarmes de seus galpões logísticos, sem vigilantes presenciais. Pela legislação atual (2026), a empresa contratada precisa de autorização da Polícia Federal?",o:["Sim, pois o monitoramento de sistemas eletrônicos de segurança é atividade regulada pela Lei nº 14.967/2024 e pelo Decreto nº 13.012/2026","Não, pois não há vigilante armado no local","Apenas se o galpão guardar dinheiro em espécie","Não, basta ter CNPJ de informática"],a:0,e:"O art. 5º, VI da Lei nº 14.967/2024 e o Decreto nº 13.012/2026 exigem autorização da Polícia Federal para empresas de monitoramento eletrônico."},
+  {id:90,cat:"pratico",q:"CASO PRÁTICO: Durante uma fiscalização da DELESP/PF em um shopping center, verifica-se que a empresa de vigilância contratada está com o Certificado de Segurança vencido há 8 meses e sem requerimento de revisão protocolado. Quais as consequências possíveis?",o:["Autuação e multa à empresa de segurança (R$ 1.000 a R$ 30.000), suspensão/cancelamento se reincidente, além de responsabilização administrativa do contratante por manter serviço irregular","Apenas um elogio verbal pelo tempo de mercado","Multa exclusivamente ao vigilante do posto","Nenhuma, pois shoppings são isentos de fiscalização"],a:0,e:"O Decreto nº 13.012/2026 prevê sanções tanto para a empresa que opera com autorização/certificado vencido quanto para o tomador que mantém contratação irregular."},
+  {id:91,cat:"pratico",q:"CASO PRÁTICO: Um operador de CFTV que trabalha exclusivamente dentro de uma sala de monitoramento (C3) climatizada, fechada e sem contato físico com o público ou exposição a roubos, pleiteia adicional de periculosidade. Como a legislação e a jurisprudência analisam esse caso?",o:["O adicional de periculosidade (art. 193, II da CLT) exige exposição permanente a roubos ou violência física; operador interno isolado em C3 só recebe se previsto em Convenção Coletiva ou se exercer atividade de risco em campo","Todo funcionário que olha uma tela de computador ganha 30% automaticamente","A Lei 14.967/2024 proibiu adicional de periculosidade para toda a categoria","O operador de C3 recebe 100% de insalubridade por olhar monitores"],a:0,e:"A CLT (art. 193, II) vincula a periculosidade à exposição efetiva a roubos/violência física, devendo ser observada a função real desempenhada e a norma coletiva da categoria."},
+  {id:92,cat:"pratico",q:"CASO PRÁTICO: Uma empresa especializada quer adotar um novo modelo de uniforme azul-escuro com faixas reflexivas e brasão no ombro muito parecido com o da Guarda Civil Municipal local. Antes de confeccionar as peças, o que ela deve fazer?",o:["Submeter o projeto do uniforme à aprovação prévia da Polícia Federal via GESP, garantindo que não haja qualquer semelhança com forças policiais ou guardas municipais","Confeccionar e usar imediatamente, ajustando só se algum guarda reclamar","Pedir autorização verbal ao prefeito","Usar o uniforme apenas no turno da noite"],a:0,e:"A IN DG/PF nº 340/2026 e o Decreto nº 13.012/2026 exigem aprovação prévia do uniforme pela PF e vedam semelhança com instituições policiais ou guardas municipais."},
+  {id:93,cat:"pratico",q:"CASO PRÁTICO: Um hospital privado decide criar seu próprio quadro interno de vigilantes patrimoniais (sem contratar empresa terceirizada). Qual procedimento legal deve adotar antes de iniciar a operação?",o:["Requerer autorização de serviço orgânico de segurança privada perante a Polícia Federal, comprovar instalações, reserva de armamento (se armado) e contratar vigilantes habilitados","Contratar diretamente ex-vigilantes sem comunicar a Polícia Federal","Colocar recepcionistas com cassetete nas portas","Abrir uma cooperativa dentro do hospital"],a:0,e:"Conforme o art. 12 da Lei nº 14.967/2024 e o Decreto nº 13.012/2026, o serviço orgânico exige autorização prévia da Polícia Federal e cumprimento dos mesmos padrões de habilitação profissional."},
+  {id:94,cat:"pratico",q:"CASO PRÁTICO: Na passagem de turno de um posto armado, o vigilante que está assumindo percebe que uma das munições do revólver está amassada/oxidada. Qual a conduta correta?",o:["Registrar imediatamente no livro/sistema de ocorrência e comunicar a supervisão para substituição da munição junto à reserva de armamento da empresa","Jogar a munição no lixo comum e assumir com uma câmara vazia","Comprar uma munição avulsa no comércio informal","Lixar a munição com faca no posto"],a:0,e:"Toda anomalia em armamento ou munição deve ser imediatamente registrada e reportada à supervisão para troca controlada na reserva de armamento autorizada."},
+  {id:95,cat:"pratico",q:"CASO PRÁTICO: Uma empresa de transporte de valores precisa transportar numerário em uma região onde houve interdição de rodovia, exigindo alteração emergencial de rota e pernoite operacional. Qual princípio da Lei 14.967/2024 e da IN 340/2026 orienta essa operação?",o:["Segurança operacional com rastreamento contínuo, comunicação redundante com a central, guarnição mínima de 4 vigilantes especializados e protocolos de gerenciamento de riscos","Abandonar o carro-forte destrancado no posto de gasolina e ir para o hotel","Transferir os malotes para um carro de passeio particular sem blindagem","Dispensar dois vigilantes para economizar diárias"],a:0,e:"O transporte de valores exige manutenção integral da guarnição mínima, rastreamento e cumprimento rigoroso dos protocolos de gerenciamento de riscos."},
+  {id:96,cat:"pratico",q:"CASO PRÁTICO: Um delegado de polícia solicita acesso às gravações das câmeras externas de um condomínio empresarial para auxiliar na investigação de um furto ocorrido na via pública em frente ao imóvel. Como o Gestor de Segurança deve proceder à luz da LGPD e dos POPs?",o:["Atender mediante requisição formal da autoridade policial, preservando a cadeia de custódia digital (hash/log de exportação) e registrando o fornecimento em protocolo interno","Enviar os vídeos por WhatsApp para qualquer pessoa que pedir na portaria","Apagar as imagens para não ter trabalho","Vender as imagens para emissoras de televisão"],a:0,e:"A LGPD (art. 7º, II e art. 23) e o Código de Processo Penal amparam o fornecimento mediante requisição formal de autoridade competente, devendo o gestor garantir integridade e rastreabilidade."},
+  {id:97,cat:"pratico",q:"CASO PRÁTICO: Uma escola de formação de vigilantes deseja oferecer parte da carga horária teórica de legislação e relações humanas em formato EAD (online). De acordo com a Portaria nº 24-CGCSP/DPA/PF/2026, isso é possível?",o:["Sim, desde que a escola esteja autorizada pela PF, utilize plataforma com controle biométrico/autenticação e mantenha 100% presenciais as disciplinas práticas e avaliações exigidas","Não, nenhum minuto de aula pode ser online","Sim, inclusive a prova prática de tiro pode ser feita por videoconferência","Sim, sem qualquer controle de frequência"],a:0,e:"A Portaria nº 24/2026 regulamenta o ensino semipresencial com rigoroso controle tecnológico de frequência e preservação integral das aulas práticas presenciais."},
+  {id:98,cat:"pratico",q:"CASO PRÁTICO: Um vigilante patrimonial trabalha em escala 12x36 (12 horas de trabalho por 36 horas de descanso), prevista em Convenção Coletiva de Trabalho. Sobre o intervalo intrajornada (refeição/descanso) nessa escala, a legislação trabalhista determina:",o:["Concessão regular de intervalo de 1 hora (com rendição no posto) ou indenização correspondente ao período suprimido, conforme a CLT e a Convenção Coletiva","O vigilante não tem direito a intervalo em escala 12x36","O vigilante pode fechar a portaria e ir almoçar fora deixando o posto abandonado","O intervalo é descontado como falta injustificada"],a:0,e:"A CLT (art. 59-A e art. 71, § 4º) assegura o intervalo intrajornada mediante rendição operacional ou o pagamento indenizatório do período não usufruído."},
+  {id:99,cat:"pratico",q:"CASO PRÁTICO: Uma empresa estatal (sociedade de economia mista) vai licitar um contrato de vigilância patrimonial armada e monitoramento eletrônico para suas unidades industriais. Na fase de planejamento do Termo de Referência, a equipe técnica deve fundamentar o edital em:",o:["Lei nº 13.303/2016 (licitações de estatais), Lei nº 14.967/2024 (Estatuto da Segurança Privada), Decreto nº 13.012/2026 e IN DG/PF nº 340/2026","Lei nº 8.666/1993 e Lei nº 7.102/1983","Apenas no Código Civil","Portaria nº 3.233/2012"],a:0,e:"Contratações de segurança privada por empresas estatais combinam o regime licitatório da Lei nº 13.303/2016 com a regulação setorial vigente (Lei 14.967/24, Decreto 13.012/26 e IN 340/26)."},
+  {id:100,cat:"pratico",q:"CASO PRÁTICO: Um profissional graduado em Gestão de Segurança Privada deseja atuar como responsável técnico e consultor na elaboração de planos de segurança e análise de riscos, ostentando habilitação oficial perante a Polícia Federal. Qual passo administrativo ele deve realizar?",o:["Requerer seu registro profissional de Gestor de Segurança Privada junto à Polícia Federal (GESP) nos termos da Lei nº 14.967/2024 e da Portaria nº 23-CGCSP/DPA/PF/2026","Solicitar registro na Ordem dos Advogados do Brasil (OAB)","Apenas imprimir um cartão de visitas sem registro","Fazer curso de extensão em transporte de valores"],a:0,e:"Conforme a Lei nº 14.967/2024 e a Portaria nº 23/2026, o profissional com formação superior na área deve requerer seu registro e a Carteira Nacional do Gestor de Segurança Privada na Polícia Federal."}
+];
+
+// ESTADO SALVO NO NAVEGADOR
+let userAnswers = JSON.parse(localStorage.getItem("segpriv_answers_v1") || "{}");
+let currentFilter = "all";
+
+function saveState() {
+  localStorage.setItem("segpriv_answers_v1", JSON.stringify(userAnswers));
+}
+
+function switchTab(tabId, btn) {
+  document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
+  document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+  document.getElementById("tab-" + tabId).classList.add("active");
+  if (btn) btn.classList.add("active");
+  if (tabId === "certificado") updateCertPreview();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function setFilter(cat, btn) {
+  currentFilter = cat;
+  document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+  renderQuestions();
+}
+
+function answerQuestion(qId, optIndex) {
+  if (userAnswers[qId] !== undefined) return;
+  userAnswers[qId] = optIndex;
+  saveState();
+  updateStats();
+  renderQuestions();
+}
+
+function resetProgress() {
+  if (!confirm("Deseja realmente zerar todas as suas respostas salvas?")) return;
+  userAnswers = {};
+  saveState();
+  updateStats();
+  renderQuestions();
+}
+
+function getMetrics() {
+  const answeredIds = Object.keys(userAnswers);
+  const totalAnswered = answeredIds.length;
+  let correctCount = 0;
+  answeredIds.forEach(id => {
+    const qObj = QUESTIONS.find(q => q.id === Number(id));
+    if (qObj && userAnswers[id] === qObj.a) correctCount++;
+  });
+  const rate = totalAnswered > 0 ? Math.round((correctCount / totalAnswered) * 100) : 0;
+  let workload = 20;
+  if (totalAnswered >= 80) workload = 60;
+  else if (totalAnswered >= 50) workload = 40;
+  const eligible = totalAnswered >= 20 && rate >= 70;
+  return { totalAnswered, correctCount, rate, workload, eligible };
+}
+
+function updateStats() {
+  const { totalAnswered, correctCount, rate, eligible } = getMetrics();
+  document.getElementById("st-answered").textContent = `${totalAnswered} / 100`;
+  document.getElementById("st-correct").textContent = correctCount;
+  document.getElementById("st-rate").textContent = `${rate}%`;
+  document.getElementById("progress-fill").style.width = `${totalAnswered}%`;
+
+  const statusEl = document.getElementById("st-cert-status");
+  if (eligible) {
+    statusEl.textContent = "LIBERADO PARA EMISSÃO!";
+    statusEl.style.color = "var(--green-600)";
+  } else {
+    statusEl.textContent = `Faltam ${Math.max(0, 20 - totalAnswered)} quest. (mín. 70%)`;
+    statusEl.style.color = "var(--blue-600)";
+  }
+}
+
+function renderQuestions() {
+  const container = document.getElementById("questions-container");
+  const term = (document.getElementById("search-box").value || "").toLowerCase().trim();
+  const letters = ["A", "B", "C", "D"];
+
+  const filtered = QUESTIONS.filter(item => {
+    const matchCat = currentFilter === "all" || item.cat === currentFilter;
+    const matchText = !term ||
+      item.q.toLowerCase().includes(term) ||
+      item.e.toLowerCase().includes(term) ||
+      item.o.some(opt => opt.toLowerCase().includes(term));
+    return matchCat && matchText;
+  });
+
+  if (filtered.length === 0) {
+    container.innerHTML = `<div class="card"><p>Nenhuma questão encontrada para o filtro selecionado.</p></div>`;
+    return;
+  }
+
+  container.innerHTML = filtered.map(item => {
+    const chosen = userAnswers[item.id];
+    const isAnswered = chosen !== undefined;
+
+    const optionsHtml = item.o.map((optText, idx) => {
+      let cls = "opt-btn";
+      if (isAnswered) {
+        if (idx === item.a) cls += " correct";
+        else if (idx === chosen) cls += " wrong";
+      }
+      return `
+        <button class="${cls}" ${isAnswered ? "disabled" : ""} onclick="answerQuestion(${item.id}, ${idx})">
+          <span class="opt-letter">${letters[idx]}</span>
+          <span>${optText}</span>
+        </button>
+      `;
+    }).join("");
+
+    return `
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-num">Questão ${String(item.id).padStart(3, "0")} de 100</span>
+          <span class="q-cat">${CAT_LABELS[item.cat]}</span>
+        </div>
+        <div class="q-text">${item.q}</div>
+        <div class="options">${optionsHtml}</div>
+        <div class="explanation ${isAnswered ? "show" : ""}">
+          <strong>Fundamentação Legal:</strong> ${item.e}
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+
+function generateHash(str) {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    hash = ((hash << 5) - hash) + str.charCodeAt(i);
+    hash |= 0;
+  }
+  return Math.abs(hash).toString(16).toUpperCase().padStart(8, "0");
+}
+
+function updateCertPreview() {
+  const { totalAnswered, rate, workload, eligible } = getMetrics();
+  const name = (document.getElementById("inp-name").value || "").trim() || "SEU NOME COMPLETO AQUI";
+  const doc = (document.getElementById("inp-doc").value || "").trim() || "Não informado";
+  const role = document.getElementById("inp-role").value;
+  const city = (document.getElementById("inp-city").value || "").trim();
+
+  const today = new Date().toLocaleDateString("pt-BR");
+  const code = `SEGPRIV-${generateHash(name + doc + rate)}-${workload}H`;
+
+  document.getElementById("cert-out-name").textContent = name.toUpperCase();
+  document.getElementById("cert-out-doc").textContent =
+    `Identificação: ${doc} • Categoria: ${role}${city ? " • " + city : ""}`;
+
+  document.getElementById("cert-out-text").innerHTML = `
+    concluiu com êxito o programa de leitura técnica e avaliação comentada sobre a <strong>Nova Legislação da Segurança Privada no Brasil</strong> (Lei nº 14.967/2024, Decreto nº 13.012/2026, Instrução Normativa DG/PF nº 340/2026 e Portarias CGCSP/DPA/PF nº 22 a 25/2026), com <strong>${totalAnswered} questões avaliadas</strong>, obtendo aproveitamento de <strong>${rate}%</strong> e carga horária certificada de <strong>${workload} horas</strong>.
+  `;
+
+  document.getElementById("cert-out-date").textContent = today;
+  document.getElementById("cert-out-code").textContent = code;
+
+  const msgEl = document.getElementById("cert-eligibility-msg");
+  if (eligible) {
+    msgEl.innerHTML = `<span style="color:var(--green-600); font-weight:700;">Parabéns! Você atingiu os requisitos (${totalAnswered} questões respondidas com ${rate}% de aproveitamento).</span> Preencha seus dados abaixo e clique em imprimir/salvar PDF.`;
+  } else {
+    msgEl.innerHTML = `Progresso atual: <strong>${totalAnswered} de 100 questões</strong> (${rate}% de acerto). Responda a pelo menos <strong>20 questões</strong> com mínimo de <strong>70%</strong> de acerto para habilitar a emissão oficial.`;
+  }
+}
+
+function printCertificate() {
+  const { eligible } = getMetrics();
+  const name = (document.getElementById("inp-name").value || "").trim();
+  const doc = (document.getElementById("inp-doc").value || "").trim();
+
+  if (!eligible) {
+    alert("Você ainda não atingiu o mínimo de 20 questões respondidas com 70% de aproveitamento para emitir o certificado.");
+    return;
+  }
+  if (!name || !doc) {
+    alert("Por favor, preencha seu Nome Completo e seu CPF ou Documento/Matrícula Profissional antes de gerar o certificado.");
+    return;
+  }
+  updateCertPreview();
+  window.print();
+}
+
+// INICIALIZAÇÃO
+updateStats();
+renderQuestions();
+updateCertPreview();
+</script>
+</body>
+</html>
